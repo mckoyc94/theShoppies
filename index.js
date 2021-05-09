@@ -20,7 +20,7 @@ searchBar.on('input', () => {
             for(var i = 0; i < 3; i++){
                 const {Title, Year} = movObj[i]
                 const newMovie = $('<li>').text(`${Title} (${Year})`)
-                const nomButton = $('<button>').text('Nominate').addClass('nominateButton').attr('id',Title)
+                const nomButton = $('<button>').text('Nominate').addClass('nominateButton').attr('id',`${Title} (${Year})`)
 
                 resultList.append(newMovie).append(nomButton)
             }
