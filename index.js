@@ -59,6 +59,14 @@ resultList.on('click', '.nominateButton', e => {
     }
 })
 
+nomList.on('click', '.removeButton', e => {
+    e.preventDefault()
+    const title = e.target.id
+    let updateNom = nominations.filter(movie => movie !== title)
+    localStorage.setItem('Nominations', JSON.stringify(updateNom))
+    loadNoms()
+})
+
 const loadNoms = () => {
     nomList.empty()
     if(localStorage.getItem('Nominations') !== null ){
