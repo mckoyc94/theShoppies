@@ -16,9 +16,7 @@ searchBar.on('input', () => {
         url: query
     }).then(data => {
         const movObj = data.Search
-        if(movObj === undefined){
-            console.log('No Search Obj')
-        } else {
+        if(movObj !== undefined){
             for(var i = 0; i < 3; i++){
                 const {Title, Year} = movObj[i]
                 const newMovie = $('<li>').text(`${Title} (${Year})`)
@@ -34,7 +32,7 @@ resultList.on('click', '.nominateButton', e => {
     e.preventDefault()
     const title = e.target.id
     if(nominations.length === 4){
-        const banner = $('<div>')
+        const banner = $('<div>').addClass('banner')
         const banTitle = $('<h1>').text('Your 5 Nominations!')
         const banSubTitle = $('<h3>').text("Thank you for your nominations")
         const finalNomList = $('<ul>')
