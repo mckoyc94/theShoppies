@@ -2,7 +2,7 @@ const searchBar = $('#searchBar')
 const searchStat = $('#search')
 const resultList = $('#results')
 const nomList = $('#nomination')
-const nominations = []
+let nominations = []
 
 searchBar.on('input', () => {
     searchStat.text(searchBar.val())
@@ -32,8 +32,29 @@ searchBar.on('input', () => {
 
 resultList.on('click', '.nominateButton', e => {
     e.preventDefault()
-    const title = e.target.id
-    nominations.push(title)
-    localStorage.setItem('Nominations', JSON.stringify(nominations))
     console.log(nominations)
+    if(nominations.length < 5){
+        const title = e.target.id
+        nominations.push(title)
+        localStorage.setItem('Nominations', JSON.stringify(nominations))
+        loadNoms()
+    }else {
+        alert("You've already nominated your 5 movies")
+    }
 })
+
+const loadNoms = () => {
+    nomList.empty()
+    if(localStorage.getItem('Nominations') !== null ){
+        nominations = JSON.parse(localStorage.getItem('Nominations'))
+
+        nominations.map(noms => {
+            const nominatedList = $('<li>').text(noms)
+            const removeButton = $('<button>').text('Remove').addClass('removeButton').attr('id', noms)
+
+            nomList.append(nominatedList).append(removeButton)
+        })
+    }
+}
+
+loadNoms()
