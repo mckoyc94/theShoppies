@@ -8,15 +8,22 @@ searchBar.on('input', () => {
     const movie = searchBar.val()
     const query = "https://www.omdbapi.com/?s=" + movie + "&apikey=trilogy"
 
+    resultList.empty()
+
     $.ajax({
         method: "GET",
         url: query
     }).then(data => {
-        if(data.Search === undefined){
+        const movObj = data.Search
+        if(movObj === undefined){
             console.log('No Search Obj')
         } else {
             for(var i = 0; i < 3; i++){
-                console.log(data.Search[i])
+                const {Title, Year, Poster} = movObj[i]
+                const newMovie = $('<li>').text(Title)
+                const nomButton = $('<button>').text('Nominate').addClass('nominateButton').attr('id',Title)
+
+                resultList.append(newMovie).append(nomButton)
             }
         }
     })
