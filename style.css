@@ -1,0 +1,19 @@
+body {
+    background-image: linear-gradient(to right, red, black 30%, black,red 110%);
+    
+}
+
+.searchSection {
+    background-color: seashell;
+    padding: 20px;
+}
+
+.resultSection{
+    background-color: seashell;
+    padding: 20px;
+}
+
+.nomSection{
+    background-color: seashell;
+    padding: 20px;
+}
