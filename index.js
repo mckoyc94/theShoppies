@@ -20,8 +20,8 @@ searchBar.on('input', () => {
             console.log('No Search Obj')
         } else {
             for(var i = 0; i < 3; i++){
-                const {Title} = movObj[i]
-                const newMovie = $('<li>').text(Title)
+                const {Title, Year} = movObj[i]
+                const newMovie = $('<li>').text(`${Title} (${Year})`)
                 const nomButton = $('<button>').text('Nominate').addClass('nominateButton').attr('id',Title)
 
                 resultList.append(newMovie).append(nomButton)
@@ -32,14 +32,30 @@ searchBar.on('input', () => {
 
 resultList.on('click', '.nominateButton', e => {
     e.preventDefault()
-    console.log(nominations)
-    if(nominations.length < 5){
-        const title = e.target.id
+    const title = e.target.id
+    if(nominations.length === 4){
+        const banner = $('<div>')
+        const banTitle = $('<h1>').text('Your 5 Nominations!')
+        const banSubTitle = $('<h3>').text("Thank you for your nominations")
+        const finalNomList = $('<ul>')
+        
+        nominations.push(title)
+        localStorage.setItem('Nominations', JSON.stringify(nominations))
+        
+        banner.append(banTitle).append(banSubTitle).append(finalNomList)
+        nominations.map(movie => {
+            const newNom = $('<li>').text(movie)
+            finalNomList.append(newNom)
+        })
+
+        $("body").append(banner)
+
+    } else if (nominations.length === 5){
+        alert("You've already entered your 5 movies")
+    } else {
         nominations.push(title)
         localStorage.setItem('Nominations', JSON.stringify(nominations))
         loadNoms()
-    }else {
-        alert("You've already nominated your 5 movies")
     }
 })
 
