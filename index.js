@@ -21,8 +21,14 @@ searchBar.on('input', () => {
                 const {Title, Year} = movObj[i]
                 const newMovie = $('<li>').text(`${Title} (${Year})`)
                 const nomButton = $('<button>').text('Nominate').addClass('nominateButton').attr('id',`${Title} (${Year})`)
+                const currentNom = nominations.filter( movie => movie === `${Title} (${Year})`)
 
+                if(currentNom.length === 1){
+                    nomButton.prop('disabled', true)
+                }
+                
                 resultList.append(newMovie).append(nomButton)
+
             }
         }
     })
