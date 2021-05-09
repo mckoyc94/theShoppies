@@ -2,6 +2,7 @@ const searchBar = $('#searchBar')
 const searchStat = $('#search')
 const resultList = $('#results')
 const nomList = $('#nomination')
+const nominations = []
 
 searchBar.on('input', () => {
     searchStat.text(searchBar.val())
@@ -19,7 +20,7 @@ searchBar.on('input', () => {
             console.log('No Search Obj')
         } else {
             for(var i = 0; i < 3; i++){
-                const {Title, Year, Poster} = movObj[i]
+                const {Title} = movObj[i]
                 const newMovie = $('<li>').text(Title)
                 const nomButton = $('<button>').text('Nominate').addClass('nominateButton').attr('id',Title)
 
@@ -29,3 +30,10 @@ searchBar.on('input', () => {
     })
 })
 
+resultList.on('click', '.nominateButton', e => {
+    e.preventDefault()
+    const title = e.target.id
+    nominations.push(title)
+    localStorage.setItem('Nominations', JSON.stringify(nominations))
+    console.log(nominations)
+})
