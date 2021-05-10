@@ -10,20 +10,25 @@
     <title>the Shoppies</title>
 </head>
 <body>
+    <!-- Main Window of the Page -->
     <main class = "container mt-5">
+        <!-- Search Bar Row -->
         <div class = "row searchSection">
             <h1>The Shoppies</h1>
+            <!-- Search Bar -->
             <div class = "col-lg-12 mt-3">
                 <label for="searchBar">Movie Title</label>
                 <input type="text" class="col-lg-12" id = "searchBar">
             </div>
         </div>
+        <!-- Results/Nomination Row -->
         <div class = "row mt-2">
+            <!-- Results from Search Load Here -->
             <div class = "col-lg-6 resultSection">
                 <h3>Results for "<strong><span id="search"></span></strong>"</h3>
                 <ul id ="results"></ul>
             </div>
-
+            <!-- Chosen Nominations Load Here -->
             <div class = "col-lg-6 nomSection">
                 <h3>Nominations</h3>
                 <ul id = "nomination"></ul>
@@ -35,7 +40,9 @@
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <!-- More jQuery for Ajax calls -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Local JS File -->
     <script src="index.js"></script>
 </body>
 </html>
